@@ -12,7 +12,15 @@
     C-A-B  reverse of inorder
     C-B-A  reverse of preorder
 
+    The key difference is the order of the three components below, just keep reverse order of the traverse order.
+
+    if cur_node.right:
+        stack.append((cur_node.right, False))
+    if cur_node.left:
+        stack.append((cur_node.left, False))
+    stack.append((cur_node, True))
 """
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
