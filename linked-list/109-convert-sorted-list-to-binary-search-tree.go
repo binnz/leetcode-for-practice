@@ -36,3 +36,31 @@ func sortedListToBST(head *ListNode) *TreeNode {
 	return root
 
 }
+
+var h *ListNode
+
+func sortedListToBST2(head *ListNode) *TreeNode {
+	if head == nil {
+		return nil
+	}
+	length := 0
+	for cur := head; cur != nil; cur = cur.Next {
+		length++
+	}
+	h = head
+	return buildBST(0, length-1)
+
+}
+func buildBST(start, end int) *TreeNode {
+	if start > end {
+		return nil
+	}
+	mid := (start + end) >> 1
+	left := buildBST(start, mid-1)
+	root := &TreeNode{Val: h.Val}
+	h = h.Next
+	right := buildBST(mid+1, end)
+	root.Left = left
+	root.Right = right
+	return root
+}
