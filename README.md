@@ -2,6 +2,8 @@
 
 Leetcode for Pratice
 
-## [double-pointer](/double-pointer)
+## [Double Pointer](/double-pointer)
 
-## [linked-list](/linked-list)
+## [Linked List](/linked-list)
+
+## [Tree](/tree)
