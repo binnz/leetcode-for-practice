@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -11,50 +9,46 @@ type TreeNode struct {
 type BSTIterator struct {
 	stack []*TreeNode
 	visit []bool
-	f     func() int
 }
 
 func Constructor(root *TreeNode) BSTIterator {
-	b := &BSTIterator{
+	b := BSTIterator{
 		stack: []*TreeNode{root},
 		visit: []bool{false},
 	}
-	f := func() int {
-		for len(b.stack) > 0 {
-			node := b.stack[len(b.stack)-1]
-			visited := b.visit[len(b.visit)-1]
-			b.stack = b.stack[:len(b.stack)-1]
-			b.visit = b.visit[:len(b.visit)-1]
-			if visited {
-				return node.Val
-			} else {
-				if node.Right != nil {
-					b.stack = append(b.stack, node.Right)
-					b.visit = append(b.visit, false)
-				}
-				b.stack = append(b.stack, node)
-				b.visit = append(b.visit, true)
-				if node.Left != nil {
-					b.stack = append(b.stack, node.Left)
-					b.visit = append(b.visit, false)
-				}
+	return b
+}
+
+func (this *BSTIterator) f() int {
+	for len(this.stack) > 0 {
+		node := this.stack[len(this.stack)-1]
+		visited := this.visit[len(this.visit)-1]
+		this.stack = this.stack[:len(this.stack)-1]
+		this.visit = this.visit[:len(this.visit)-1]
+		if visited {
+			return node.Val
+		} else {
+			if node.Right != nil {
+				this.stack = append(this.stack, node.Right)
+				this.visit = append(this.visit, false)
+			}
+			this.stack = append(this.stack, node)
+			this.visit = append(this.visit, true)
+			if node.Left != nil {
+				this.stack = append(this.stack, node.Left)
+				this.visit = append(this.visit, false)
 			}
 		}
-		return 0
 	}
-	b.f = f
-	return *b
+	return 0
 }
 
 func (this *BSTIterator) Next() int {
-	x := len(this.stack)
-	fmt.Println(x)
 	return this.f()
 }
 
 func (this *BSTIterator) HasNext() bool {
-	x := len(this.stack)
-	return x > 0
+	return len(this.stack) > 0
 }
 
 func main() {
