@@ -6,6 +6,8 @@
  *     Right *TreeNode
  * }
  */
+package main
+
 func leafSimilar(root1 *TreeNode, root2 *TreeNode) bool {
 	if root1 == nil && root2 == nil {
 		return true
