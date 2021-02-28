@@ -1,42 +1,46 @@
 package main
 
-import "sort"
-
 func findBestValue(arr []int, target int) int {
-	sort.Ints(arr)
-	left, right := 0, len(arr)
-	t := float64(target) / float64(len(arr))
+
+	left, right := 0, 100000
+
 	for left < right {
 		mid := left + (right-left)>>1
-		if float64(arr[mid]) == t {
-			left = mid
-			break
-		} else if float64(arr[mid]) < t {
+		if calSum(arr, mid) < target {
 			left = mid + 1
 		} else {
 			right = mid
 		}
 	}
-	if left == 0 {
-		return int(t)
+	if right == 10000 {
+		res := 0
+		for _, e := range arr {
+			if e > res {
+				res = e
+			}
+		}
+		return res
 	}
-	if left == len(arr) {
-		return arr[len(arr)-1]
+	if target-calSum(arr, left-1) <= calSum(arr, left)-target {
+		return left - 1
 	}
-	if abs(float64(target), 5*float64(arr[left])) > abs(float64(target), 5*float64(arr[left-1])) {
-		return arr[left-1]
-	} else {
-		return arr[left]
-	}
+	return left
 
 }
-func abs(a, b float64) float64 {
+
+func calSum(arr []int, mid int) int {
+	res := 0
+	for _, e := range arr {
+		res += min(e, mid)
+	}
+	return res
+}
+func min(a, b int) int {
 	if a > b {
-		return a - b
+		return b
 	}
-	return b - a
+	return a
 }
-
 func main() {
-	findBestValue([]int{2, 3, 5}, 10)
+	findBestValue([]int{2, 3, 5}, 11)
 }
