@@ -12,7 +12,7 @@ func findBestValue(arr []int, target int) int {
 			right = mid
 		}
 	}
-	if right == 10000 {
+	if right == 100000 {
 		res := 0
 		for _, e := range arr {
 			if e > res {
@@ -40,7 +40,4 @@ func min(a, b int) int {
 		return b
 	}
 	return a
-}
-func main() {
-	findBestValue([]int{2, 3, 5}, 11)
 }
