@@ -27,7 +27,3 @@ func countLessOrEqualThanTarget(matrix [][]int, t int) int {
 	}
 	return c
 }
-
-func main() {
-	kthSmallest([][]int{[]int{1, 5, 9}, []int{10, 11, 13}, []int{12, 13, 15}}, 7)
-}

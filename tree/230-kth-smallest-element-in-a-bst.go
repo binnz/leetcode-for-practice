@@ -34,3 +34,41 @@ func kthSmallest(root *TreeNode, k int) int {
 	return 0
 
 }
+
+func kthSmallest1(root *TreeNode, k int) int {
+	var reverse func(*TreeNode) func() int
+
+	reverse = func(node *TreeNode) func() int {
+		stack := []*TreeNode{root}
+		n := []bool{false}
+		return func() int {
+			for len(stack) != 0 {
+				curNode := stack[len(stack)-1]
+				visited := n[len(n)-1]
+				stack = stack[:len(stack)-1]
+				n = n[:len(n)-1]
+				if visited {
+					return curNode.Val
+				} else {
+					if curNode.Right != nil {
+						stack = append(stack, curNode.Right)
+						n = append(n, false)
+					}
+					stack = append(stack, curNode)
+					n = append(n, true)
+					if curNode.Left != nil {
+						stack = append(stack, curNode.Left)
+						n = append(n, false)
+					}
+				}
+			}
+			return 0
+		}
+	}
+	res := 0
+	r := reverse(root)
+	for i := 0; i < k; i++ {
+		res = r()
+	}
+	return res
+}
