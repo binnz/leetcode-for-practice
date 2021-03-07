@@ -15,7 +15,3 @@ func findDuplicate(nums []int) int {
 	}
 	return left
 }
-
-func main() {
-	findDuplicate([]int{1, 3, 4, 2, 2})
-}

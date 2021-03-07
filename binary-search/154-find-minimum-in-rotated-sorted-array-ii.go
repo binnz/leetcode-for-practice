@@ -1,6 +1,6 @@
 package main
 
-func findMin(nums []int) int {
+func findMin1(nums []int) int {
 	l, r := 0, len(nums)-1
 	for l < r {
 		m := l + (r-l)>>1

@@ -1,6 +1,6 @@
 package main
 
-func hIndex(citations []int) int {
+func hIndex1(citations []int) int {
 	if len(citations) < 1 {
 		return len(citations)
 	}
