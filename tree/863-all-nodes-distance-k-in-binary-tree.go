@@ -45,3 +45,58 @@ func distanceK(root *TreeNode, target *TreeNode, K int) []int {
 	dfss(target, used, K)
 	return res
 }
+
+func distanceK1(root *TreeNode, target *TreeNode, K int) []int {
+	var (
+		dfs func(*TreeNode)
+		hm  map[*TreeNode]*TreeNode = map[*TreeNode]*TreeNode{}
+	)
+	dfs = func(tn *TreeNode) {
+		if tn == nil {
+			return
+		}
+		if tn.Left != nil {
+			hm[tn.Left] = tn
+			dfs(tn.Left)
+		}
+		if tn.Right != nil {
+			hm[tn.Right] = tn
+			dfs(tn.Right)
+		}
+	}
+	dfs(root)
+	res := []int{}
+	queue := []*TreeNode{target}
+	level := 0
+	for len(queue) != 0 {
+		mid := []*TreeNode{}
+		j := len(queue)
+		for j > 0 {
+			j--
+			cur := queue[0]
+			queue = queue[1:]
+			if level == K {
+				res = append(res, cur.Val)
+			} else {
+				if cur.Left != nil && cur.Left.Val != -1 {
+					mid = append(mid, cur.Left)
+				}
+				if cur.Right != nil && cur.Right.Val != -1 {
+					mid = append(mid, cur.Right)
+				}
+				if n, ok := hm[cur]; ok {
+					if n.Val != -1 {
+						mid = append(mid, n)
+					}
+				}
+			}
+			cur.Val = -1
+		}
+		if level == K {
+			return res
+		}
+		level++
+		queue = mid
+	}
+	return res
+}

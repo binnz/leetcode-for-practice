@@ -2,7 +2,7 @@ package main
 
 func shortestPathBinaryMatrix(grid [][]int) int {
 	row, col := len(grid), len(grid[0])
-	way := [][]int{[]int{-1, -1}, []int{-1, 0}, []int{-1, 1}, []int{0, -1}, []int{0, 1}, []int{1, -1}, []int{1, 0}, []int{1, 1}}
+	way := [][]int{{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}}
 	if grid[0][0] == 1 {
 		return -1
 	}
