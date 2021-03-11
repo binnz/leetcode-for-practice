@@ -19,12 +19,12 @@ func maxAreaOfIsland(grid [][]int) int {
 	}
 	for i := 0; i < row; i++ {
 		for j := 0; j < col; j++ {
-			res = max(res, dfs(i, j))
+			res = max3(res, dfs(i, j))
 		}
 	}
 	return res
 }
-func max(a, b int) int {
+func max3(a, b int) int {
 	if a > b {
 		return a
 	}
