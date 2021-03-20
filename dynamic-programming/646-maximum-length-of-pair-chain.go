@@ -3,7 +3,7 @@ package main
 import "sort"
 
 func findLongestChain(pairs [][]int) int {
-	dp := make([]int, len(pairs))
+	dp := make([]int, len(pairs)+1)
 	res := 0
 	arr := Pairs{}
 	arr = pairs
@@ -47,3 +47,5 @@ func (p Pairs) Swap(i, j int) {
 func main() {
 	findLongestChain([][]int{{-1, 1}, {-2, 7}, {-5, 8}, {-3, 8}, {1, 3}, {-2, 9}, {-5, 2}})
 }
+
+92620922MA73NJ7JX2
