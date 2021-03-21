@@ -29,6 +29,3 @@ func max2(a, b int) int {
 	}
 	return b
 }
-func main() {
-	findNumberOfLIS([]int{1, 3, 5, 4, 7})
-}
