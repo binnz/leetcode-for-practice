@@ -24,9 +24,3 @@ func minDistance(word1 string, word2 string) int {
 	}
 	return dp[l1][l2]
 }
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
