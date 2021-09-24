@@ -1,7 +1,8 @@
 # leetcode-for-practice
 
-## [Binary Search This Way](/binary-search)
-"""
+## [Binary Tree Traversal This Way](/binary-search/binary-tree-traversal.py)
+
+```
     Six ways of traverse the binary tree using one method
 
                    A
@@ -22,7 +23,7 @@
     if cur_node.left:
         stack.append((cur_node.left, False))
     stack.append((cur_node, True))
-"""
+```
 
 ```
 Definition for a binary tree node.
